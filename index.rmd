@@ -1,0 +1,57 @@
+---
+title: "Babe Ruth Statistics"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+
+inputs{.sidebar}
+--------------------------------------------------------------------------------------
+Babe Ruth was a power hitter for NY Yankees in the 20's and 30's. He held the record for most homeruns hit in a single season until the 60's, and the most career homeruns until the 70's. 
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(dplyr)
+library(Lahman)
+library(ggplot2)
+
+result<-Batting%>%
+        filter(playerID=='ruthba01')%>%
+        select(yearID,SO,HR)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Scatterplot: Homeruns vs. Strikeouts
+
+```{r}
+
+ggplot()+
+  geom_point(data=result,aes(x=SO,y=HR),color="red")+
+  xlab("strikeouts")+
+  ylab("homeruns")
+```
+
+### Histogram: Homerun distribution 
+
+```{r}
+ggplot()+
+  geom_histogram(data=result,aes(x=HR),bins=5,color="blue",fill="white")
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+
+### Time Series: Homerun totals across time
+
+```{r}
+ggplot()+
+  geom_point(data=result,aes(x=yearID,y=HR),color="red",size=5)+
+  geom_line(data=result,aes(x=yearID,y=HR), color="blue", size=2)+
+  xlab("year")+
+  ylab("homeruns")
+```
+
