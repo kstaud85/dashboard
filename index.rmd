@@ -26,7 +26,7 @@ Column {data-width=650}
 
 ### Scatterplot: Homeruns vs. Strikeouts
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 
 ggplot()+
   geom_point(data=result,aes(x=SO,y=HR),color="red")+
@@ -36,7 +36,7 @@ ggplot()+
 
 ### Histogram: Homerun distribution 
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 ggplot()+
   geom_histogram(data=result,aes(x=HR),bins=5,color="blue",fill="white")
 ```
@@ -47,7 +47,7 @@ Column {data-width=350}
 
 ### Time Series: Homerun totals across time
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 ggplot()+
   geom_point(data=result,aes(x=yearID,y=HR),color="red",size=5)+
   geom_line(data=result,aes(x=yearID,y=HR), color="blue", size=2)+
