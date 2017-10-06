@@ -19,14 +19,13 @@ df<-deaths%>%
   group_by(INCIDENT_DATE)%>%
   summarize(num_deaths=n())%>%
   mutate(date=ymd(INCIDENT_DATE))%>%
-  filter(date<="1957-07-27")%>%
+  filter(date<="1953-07-27")%>%
   select(INCIDENT_DATE,num_deaths,date)
 
 
 #use head(df) to vuew data frame table
 
 ggplot()+
-  geom_line(data=df,aes(x=date,y=num_deaths))
+  geom_line(data=df,aes(x=date,y=num_deaths))+
+  scale_x_date(date_breaks = '3 months', date_labels = "%b %y")
 
-
-#produce graph that shows years born for killed soldier in korean war
